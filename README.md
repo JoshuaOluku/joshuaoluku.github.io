@@ -1,6 +1,6 @@
 # Joshua Oluku
 ### Mechatronics Engineering Student | University of Nigeria, Nsukka
-[LinkedIn](https://linkedin.com) | [GitHub](https://github.com/SkulboiQ)
+[LinkedIn](https://www.linkedin.com/in/joshua-oluku-348ba1294/) | [GitHub](https://github.com/SkulboiQ)
 
 ---
 
@@ -17,7 +17,22 @@ An autonomous heavy-lift medical delivery drone designed to bypass critical logi
 #### 📐 Core Structural Assembly (Autodesk Fusion 360)
 ![AeroMed Hexacopter Chassis Assembly](chassis_render.jpg)
 
-* **Mechanical Engineering Layer:** Designed a 240mm regular hexagonal dual-plate chassis featuring a 100mm mass-reduction center pocket and a 35mm structural gap cage. Engineered hollow 20mm carbon fiber arm tubes spaced at symmetric 60° configurations, an aerodynamic underslung front-loading payload capsule with a matching 10mm filleted nose cone hatch to minimize air-scoop drag, and wide-stance landing gear skids yielding a 40mm ground clearance buffer.
+#### 📝 The Engineering Design Process & Iteration Log
+
+To ensure structural integrity and operational safety under a heavy dynamic payload, the design was executed through a rigorous 4-stage engineering lifecycle:
+
+1. **Stage 1: Structural Layout & Mass Optimization**
+   * *Problem:* Heavy-lift systems require maximum structural rigidity without penalizing airtime via dead weight.
+   * *Solution:* Engineered a dual-plate regular hexagonal frame with a 240mm diameter footprint using 3mm carbon fiber plates. To optimize strength-to-weight ratio, a 100mm central weight-reduction pocket was cut from the bottom plate, and a smaller 80mm pocket was placed on the top plate for stack access, reducing overall chassis plate mass by over 20% while retaining structural stiffness. The plates are rigidly braced via 6× 6061-T6 aluminum standoffs sitting at a precise 65mm radial boundary.
+2. **Stage 2: Propulsion Vectoring & Vibration Isolation**
+   * *Problem:* Motor torque and high-speed propeller rotations introduce high-frequency harmonic vibrations that disrupt flight controller IMUs and cause camera jitter.
+   * *Solution:* Distributed 6× hollow carbon fiber arms (20mm OD / 18mm ID with a rigid 1mm structural wall) at exact 60° configurations. The arms sit perfectly aligned with the Z-axis midpoint of the chassis gap (Z=20.5mm) to distribute torsional loads evenly. Standardized 40mm diameter aluminum motor mounting discs with a universal 19x19mm square bolt grid were integrated at the arm tips ($R=250\text{mm}$) to handle high-torque brushless motors.
+3. **Stage 3: Aerodynamic Evaluation & Fuselage Modification (Critical Iteration)**
+   * *Problem:* Initial prototype layouts utilized an open-faced (+X normal) horizontal cargo pod for easy medical kit insertion. However, aerodynamic analysis revealed that when the hexacopter pitches downward during forward high-velocity flight, the open face acts as an "air scoop," creating massive drag, aerodynamic flow separation, and critical battery depletion.
+   * *Solution:* Iterated the design by engineering a custom, mating **Payload Hatch Base** extending 15mm forward. Applied a 10mm aerodynamic fillet to the nose outer boundary to form a sleek, low-drag nose dome. This completely seals the pod, drops the drag coefficient ($C_d$), and shields the cargo from harsh environmental exposure.
+4. **Stage 4: Ground Clearance & Landing Stability**
+   * *Problem:* The drone requires a wide, tip-resistant stance during autonomous touchdowns, with a built-in safety clearance buffer for the underslung cargo.
+   * *Solution:* Designed symmetric dual landing gear legs splayed outward at 60° from vertical down to a depth of $Z=-130\text{mm}$, terminating in 240mm long ground contact rails. This provides a rock-solid footprint that cleanly straddles the 110mm-wide payload pod while leaving an exact 40mm structural ground clearance buffer beneath the pod base.
 
 #### 🧠 Real-Time Vision Tracking Loop (YOLOv8 Nano & PyMAVLink)
 ![YOLOv8 Target Pad Tracking Telemetry](tracking_telemetry.jpg)
