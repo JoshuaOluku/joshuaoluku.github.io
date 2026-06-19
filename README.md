@@ -1,59 +1,58 @@
 # Joshua Oluku
 ### Mechatronics Engineering Student | University of Nigeria, Nsukka
-[LinkedIn](https://www.linkedin.com/in/joshua-oluku-348ba1294/) | [GitHub](https://github.com/SkulboiQ)
+[LinkedIn](https://www.linkedin.com/in/joshua-oluku-348ba1294/) | [GitHub](https://github.com/JoshuaOluku)
 
 ---
 
-## 💡 Professional Overview
-Fourth-year Mechatronics Engineering student at the University of Nigeria, Nsukka, serving as General Secretary for the UNN Mechatronics Club. Focused on the structural optimization of mechatronic assemblies, CAD/CAM pipelines, and the execution of automated software layers through AI-assisted rapid prototyping (Vibe Coding). I specialize in bridging the gap between physical mechanics and digital control loop architectures.
+## 🛠️ Technical Profile
+Fourth-year Mechatronics Engineering student at UNN. Focused on parametric 3D design, hardware-in-the-loop simulation, and embedding firmware logic onto edge microcontrollers. Experienced in identifying manufacturing constraints (DFM), optimizing mechanical assemblies, and writing data-driven scripts for automated computer vision systems.
 
 ---
 
-## 🚀 Featured Engineering Projects
+## 🚀 Engineering Projects
 
-### 🛸 1. AeroMed Heavy-Lift UAV (Digital Twin & Autonomy Pipeline)
-An autonomous heavy-lift medical delivery drone designed to bypass critical logistical bottlenecks and transport sensitive packages (2–3kg payloads).
+### 🚒 1. Autonomous Tracked Firefighter Robot
+An indoor response vehicle developed to navigate structural fire scenes, bypass debris, and target localized hazards using a dual-axis spray gimbal.
 
-#### 📐 Core Structural Assembly (Autodesk Fusion 360)
-![AeroMed Hexacopter Chassis Assembly](chassis_render.jpg)
+#### 📐 System Assembly & Manufacturing Architecture
+![Autonomous Firefighter Tracked Assembly](firefighter_render.jpg)
 
-#### 📝 The Engineering Design Process & Iteration Log
+#### ⚙️ Engineering Decisions & Design Iterations:
 
-To ensure structural integrity and operational safety under a heavy dynamic payload, the design was executed through a rigorous 4-stage engineering lifecycle:
+* **Drivetrain Constraints:** Swapped traditional wheels for a $250\text{mm} \times 180\text{mm} \times 50\text{mm}$ continuous track (tank tread) configuration. Tracks distribute the vehicle’s $2.7\text{kg}$ operational weight over a wider surface area, providing the necessary ground traction to clear door thresholds and indoor debris without slipping.
+* **Modular Fluid Containment (DFM Partitioning):** The initial design used an integrated internal baffle wall to create a rear reservoir. Realizing that printing a monolithic fluid chamber causes severe structural warping and leaves FDM layer lines porous to leaks, I modified the design. I removed the built-in wall and created a separate **Modular Drop-In Water Tank** ($171\text{mm} \times 74\text{mm} \times 42\text{mm}$) with a $0.5\text{mm}$ clearance tolerance to allow for 3D printer material expansion. Vertical guide ribs were added to lock the tank horizontally while keeping it easy to remove for maintenance.
+* **Friction Isolation via Bearing Seats:** To prevent rotating steel axle shafts from wearing down and melting raw 3D-printed plastic walls, I cut concentric $\varnothing16\text{mm} \times 2\text{mm}$ deep counterbores into the outside of the $\varnothing12\text{mm}$ axle holes. This design change allows flanged ball bearings to press-fit flush into the frame, isolating rotational friction completely.
+* **Targeting Stability:** Designed a top-deck recessed mounting slot to anchor a dual-servo pan-tilt gimbal tower. The water delivery tube terminates at a custom **venturi mist nozzle** aligned perfectly with the robot’s $Y=0\text{mm}$ centerline, neutralizing asymmetric fluid recoil during active pump discharging.
 
-1. **Stage 1: Structural Layout & Mass Optimization**
-   * *Problem:* Heavy-lift systems require maximum structural rigidity without penalizing airtime via dead weight.
-   * *Solution:* Engineered a dual-plate regular hexagonal frame with a 240mm diameter footprint using 3mm carbon fiber plates. To optimize strength-to-weight ratio, a 100mm central weight-reduction pocket was cut from the bottom plate, and a smaller 80mm pocket was placed on the top plate for stack access, reducing overall chassis plate mass by over 20% while retaining structural stiffness. The plates are rigidly braced via 6× 6061-T6 aluminum standoffs sitting at a precise 65mm radial boundary.
-2. **Stage 2: Propulsion Vectoring & Vibration Isolation**
-   * *Problem:* Motor torque and high-speed propeller rotations introduce high-frequency harmonic vibrations that disrupt flight controller IMUs and cause camera jitter.
-   * *Solution:* Distributed 6× hollow carbon fiber arms (20mm OD / 18mm ID with a rigid 1mm structural wall) at exact 60° configurations. The arms sit perfectly aligned with the Z-axis midpoint of the chassis gap (Z=20.5mm) to distribute torsional loads evenly. Standardized 40mm diameter aluminum motor mounting discs with a universal 19x19mm square bolt grid were integrated at the arm tips ($R=250\text{mm}$) to handle high-torque brushless motors.
-3. **Stage 3: Aerodynamic Evaluation & Fuselage Modification (Critical Iteration)**
-   * *Problem:* Initial prototype layouts utilized an open-faced (+X normal) horizontal cargo pod for easy medical kit insertion. However, aerodynamic analysis revealed that when the hexacopter pitches downward during forward high-velocity flight, the open face acts as an "air scoop," creating massive drag, aerodynamic flow separation, and critical battery depletion.
-   * *Solution:* Iterated the design by engineering a custom, mating **Payload Hatch Base** extending 15mm forward. Applied a 10mm aerodynamic fillet to the nose outer boundary to form a sleek, low-drag nose dome. This completely seals the pod, drops the drag coefficient ($C_d$), and shields the cargo from harsh environmental exposure.
-4. **Stage 4: Ground Clearance & Landing Stability**
-   * *Problem:* The drone requires a wide, tip-resistant stance during autonomous touchdowns, with a built-in safety clearance buffer for the underslung cargo.
-   * *Solution:* Designed symmetric dual landing gear legs splayed outward at 60° from vertical down to a depth of $Z=-130\text{mm}$, terminating in 240mm long ground contact rails. This provides a rock-solid footprint that cleanly straddles the 110mm-wide payload pod while leaving an exact 40mm structural ground clearance buffer beneath the pod base.
+#### 🧠 Control Loop Simulation & Electronics
+![ESP32 Firefighter Wiring Circuit Layout](circuit_layout.jpg)
 
-#### 🧠 Real-Time Vision Tracking Loop (YOLOv8 Nano & PyMAVLink)
-![YOLOv8 Target Pad Tracking Telemetry](tracking_telemetry.jpg)
-
-* **Autonomy & Systems Integration (AI-Assisted):** Leveraged advanced generative AI toolchains to rapidly build and deploy a functional real-time computer vision landing sequence. Programmed an automated synthetic dataset generation engine inside Google Colab via OpenCV, trained a lightweight **YOLOv8 Nano** model at $320\times320$ resolution to fit edge-hardware constraints, and established a proportional control tracking script converting pixel errors ($E_x, E_y$) into physical velocity vectors ($V_x, V_y$) transmitted via **PyMAVLink** to a Pixhawk autopilot.
-* **Tools Used:** `Autodesk Fusion` `YOLOv8` `OpenCV` `Python` `PyMAVLink` `Google Colab`
+* **Embedded Logic:** Developed and verified the tracking firmware inside a Wokwi simulation environment using an **ESP32** microcontroller. The C++ control loop continually reads inputs from an HC-SR04 ultrasonic sensor, triggers an obstacle avoidance maneuver when tracking debris under $15\text{cm}$, and switches a 5V relay to activate a 12V priming pump once the pan-servo locks onto a threat coordinate.
+* **Tools:** `Autodesk Fusion` `Wokwi` `C++ (Arduino IDE)` `ESP32 Register PWM`
 
 ---
 
-## 🛠️ Core Technical Competencies
+### 🛸 2. AeroMed Heavy-Lift UAV
+An autonomous heavy-lift medical drone designed to transport $2\text{--}3\text{kg}$ supplies over urban traffic obstacles.
 
-* **Mechanical & Architectural Design:** Parametric/Hybrid 3D Assembly Modeling, Weight-Reduction Topology Optimization, Aerodynamic Body Design, Fusion 360, SolidWorks.
-* **Systems Integration & Controls:** AI-Assisted Rapid Software Prototyping (Vibe Coding), Real-Time Edge Computer Vision Deployment, Autopilot Telemetry Interfaces (MAVLink protocol).
-* **Leadership & Operations:** Technical Project Architecture, System Documentation, Strategic Brand Sponsorship Negotiations, General Secretary (Mechatronics Club UNN).
+* **Structural Optimization:** Designed a dual-plate regular hexagonal frame with a 240mm footprint using 3mm carbon fiber plates. Cut out weight-reduction pockets to reduce chassis plate mass by 20% while maintaining required bending stiffness. Distributed 6× hollow carbon fiber arms (20mm OD) at 60° angles to balance structural stress.
+* **Computer Vision Target Tracking:** Wrote an automated script inside Google Colab using OpenCV to compile a synthetic dataset. Trained a lightweight **YOLOv8 Nano** model at $320\times320$ resolution for real-time edge processing. Integrated a proportional tracking control script that translates target pixel errors into directional velocity vectors via **PyMAVLink** to command a Pixhawk autopilot during autonomous landings.
+* **Tools:** `Autodesk Fusion` `YOLOv8` `OpenCV` `Python` `PyMAVLink`
 
 ---
 
-## 👔 Leadership & Professional Milestones
+## 🛠️ Technical Competencies
+
+* **Mechanical Engineering:** Parametric 3D Assembly Modeling, Design for Manufacturing (DFM), Fits & Tolerances, Structural Weight Optimization, Fusion 360, SolidWorks.
+* **Control Systems & Software:** Embedded System Programming, Hardware-in-the-Loop Simulation, Multi-core Microcontrollers (ESP32), Real-Time Object Detection (YOLO), Computer Vision pipelines.
+* **Operations:** Technical Documentation, System Integration, UNN Mechatronics Club Administration (General Secretary).
+
+---
+
+## 👔 Leadership & Milestones
 
 ### **General Secretary** — Mechatronics Club, University of Nigeria, Nsukka
 *June 2025 — Present*
-* Managed administrative operations, core team coordination, and official correspondence for the engineering club student body.
-* Formulated, managed, and executed the 2-day national career webinar *"Navigating Internships, Career Growth & Life After School"*, handling technical speaker onboarding and organizing cross-department advertising.
-* Negotiated brand visibility terms and strategic agreements with corporate tech sponsors to maximize club event recognition.
+* Direct daily administrative tasks, manage official correspondence, and coordinate core team deliverables for the engineering club student body.
+* Organized and executed the 2-day national career webinar *"Navigating Internships, Career Growth & Life After School"*, supervising speaker onboarding and cross-department promotional strategies.
+* Negotiated brand placement terms with corporate tech sponsors to fund student engineering activities.
